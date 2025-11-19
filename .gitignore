@@ -3,6 +3,7 @@ test_models.py
 test_pdf_handler.py
 explore_data.py
 explore_jobs.py
+python_test_truncate_script.py
 
 # Virtual Environments
 job_seeker_env/
