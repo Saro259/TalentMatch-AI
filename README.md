@@ -124,7 +124,7 @@ Please ensure your code adheres to the project's coding standards and includes a
 
 ## 📜 License Information
 
-This project has no specified license. All rights are reserved by the owner, Saro259.
+This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
