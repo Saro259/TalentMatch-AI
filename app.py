@@ -6,16 +6,16 @@ from utils.pdf_handler import extract_text_from_pdf
 from utils.groq_analyzer import analyze_resume
 
 # ---- Basic Streamlit Page Setup ----
-st.set_page_config(page_title="AI Job Matcher", page_icon="🎯", layout="centered")
+st.set_page_config(page_title="TalentMatch AI", page_icon="🎯", layout="centered")
 
-st.title("🎯 AI Job Matcher")
+st.title("🎯 TalentMatch AI")
 st.caption("Upload your resume and let AI find the best job matches for you.")
 
 # ---- Upload Resume ----
 uploaded_file = st.file_uploader("📄 Upload your Resume (PDF only)", type=["pdf"])
 
 # ---- User Options ----
-num_results = st.slider("Number of job results to display", 5, 30, 10)
+# num_results = st.slider("Number of job results to display", 5, 30, 10)
 # min_score = st.slider("Minimum match score (%)", 10, 80, 30) / 100
 
 # ---- Handle Uploaded Resume ----
@@ -39,8 +39,8 @@ if uploaded_file is not None:
                 # Step 4: Find matches
                 matches = matcher.finding_matching_jobs(
                     resume_data,
-                    top_n=num_results,
-                    min_score=min_score
+                    # top_n=num_results,
+                    # min_score=min_score
                 )
 
             # ---- Display Results ----

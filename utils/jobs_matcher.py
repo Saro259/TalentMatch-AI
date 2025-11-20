@@ -22,10 +22,10 @@ class JobMatcher:
         unnamed_cols = [col for col in self.jobs_df.columns if col.startswith('Unnamed')]
         if unnamed_cols:
             self.jobs_df = self.jobs_df.drop(columns=unnamed_cols)
-            print(f"🧹 Dropped {len(unnamed_cols)} unnamed columns")
+            print(f"Dropped {len(unnamed_cols)} unnamed columns")
         
-        print(f"✅ Loaded {len(self.jobs_df)} jobs")
-        print(f"📊 Columns: {list(self.jobs_df.columns)}")
+        print(f"Loaded {len(self.jobs_df)} jobs")
+        print(f"Columns: {list(self.jobs_df.columns)}")
         
         # Your CSV structure: company, category, post_link, job_description, location, date_posted, keywords
         self.col_names = {
@@ -266,78 +266,10 @@ class JobMatcher:
         
         results_df = pd.DataFrame(results)
         results_df = results_df.sort_values('match_score', ascending=False)
-        top_results = results_df.head(top_n)
+        top_results = results_df
         
         print(f"\n Found {len(results_df)} jobs above {min_score:.0%} threshold")
         print(f" Returning top {len(top_results)} matches")
         
         return top_results
 
-
-# ==================================================
-# TEST FUNCTION
-# ==================================================
-# def test_matcher():
-#     """Test the matcher with your resume"""
-    
-#     import sys
-#     import os
-#     sys.path.append('..')
-    
-#     print("="*60)
-#     print("JOB MATCHER TEST")
-#     print("="*60)
-    
-#     # Load and analyze resume
-#     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-#     pdf_path = os.path.join(BASE_DIR, '..', 'data', 'Saro_Elza_Mathew_Resume.pdf')
-    
-#     with open(pdf_path, 'rb') as f:
-#         resume_text = extract_text_from_pdf(f)
-    
-#     print(f"\n📄 Extracted resume: {len(resume_text)} chars")
-    
-#     resume_data = analyze_resume(resume_text)
-#     if resume_data is None:
-#         print("❌ Resume analysis failed — cannot continue job matching.")
-#         return
-    
-#     print(f"\n✅ Resume analyzed:")
-#     print(f"   - Skills: {resume_data.get('skills', [])[:5]}")
-#     print(f"   - Experience: {resume_data.get('experience_years')} years")
-#     print(f"   - Level: {resume_data.get('career_level')}")
-    
-#     # Initialize matcher
-#     csv_path = os.path.join(BASE_DIR, '..', 'data', 'tech_jobs_data.csv')
-#     matcher = JobMatcher(csv_path)
-    
-#     # Find matches
-#     matches = matcher.finding_matching_jobs(resume_data, top_n=10, min_score=0.25)
-    
-#     if len(matches) == 0:
-#         print("\n⚠️  No matches found. Try lowering min_score.")
-#         return
-    
-#     # Display results
-#     print("\n" + "="*60)
-#     print("TOP 10 MATCHING JOBS")
-#     print("="*60)
-    
-#     for i, (idx, job) in enumerate(matches.iterrows(), 1):
-#         print(f"\n{i}. {job['title']}")
-#         print(f"   🏢 Company: {job['company']}")
-#         print(f"   📍 Location: {job['location']}")
-#         print(f"   📊 Level: {job['experience_level']}")
-#         print(f"   🎯 Match: {job['match_score']*100:.1f}%")
-#         print(f"      └─ Skills: {job['skill_score']*100:.0f}% | Experience: {job['exp_score']*100:.0f}% | Title: {job['title_score']*100:.0f}%")
-        
-#         # Show description preview
-#         desc = str(job['description'])[:200].replace('\n', ' ')
-#         print(f"   📝 {desc}...")
-        
-#         # Show link if available
-#         if pd.notna(job.get('post_link')):
-#             print(f"   🔗 {job['post_link']}")
-
-# if __name__ == "__main__":
-#     test_matcher()
