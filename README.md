@@ -127,7 +127,7 @@ Please ensure your code adheres to the project's coding standards and includes a
 This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
-
+*   Built for Educosys Hackathon
 *   Streamlit for providing a simple and efficient way to create web applications.
 *   Groq for their AI API.
 *   pypdf for PDF handling capabilities.
